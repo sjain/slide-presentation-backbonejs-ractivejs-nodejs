@@ -1,0 +1,14 @@
+{
+  "name": "coding-challenge-js",
+  "version": "1.0.0",
+  "description": "Frontend Coding Challenge for NomNom",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+  },
+  "author": "NomNom Insights",
+  "license": "All rights reserved, this code can't be shared with out permission from NomNom Insights"
+}
