@@ -23,15 +23,16 @@ You can get information from the API about:
 - number of slides for a deck
 - request each slide for a deck
 - visitor statistics for each deck
+
 # :computer: Setup
 
 This gist repo includes:
 
-- index.js - tiny node application server:
+- `index.js` - tiny node application server:
   - it can serve any static files in this directory
   - also hosts the API (documented below)
 
-- index.html, app.js - main application files
+- `index.html`, `app.js` - main application files
   these are the entry points for your solution
 
 ## :rocket: To start
