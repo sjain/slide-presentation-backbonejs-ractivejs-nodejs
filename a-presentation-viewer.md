@@ -45,13 +45,19 @@ This gist repo includes:
 You have to implement the solution using the following
 stack. It consists of:
 
-- Backbone
-- RactiveJS
-- RequireJs
+- [Backbone](http://backbonejs.org/)
+- [RactiveJS](ractivejs.org)
+- [RequireJs](requirejs.org)
 
 You can add any extra libraries, for example for charting, CSS pre-processors
 or build tool of your choice.
 However full frameworks like Angular, Marionette or Ember are not allowed.
+
+## HOWEVER
+
+Solutions in [ClojureScript](http://clojure.org/about/clojurescript) and any of
+[React wrappers](https://facebook.github.io/react/) are **accepted**.
+
 
 ## :no_good: Do not modify index.js and slides.json!
 
