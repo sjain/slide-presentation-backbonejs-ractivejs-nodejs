@@ -1,10 +1,6 @@
-# :microscope: NomNom Frontend Coding challenge!
+# :microscope: NomNom Frontend Coding challenge
 
 ## :page_with_curl: Presentation viewer!
-
-# :tv: Demo
-
-![demo](http://i.imgur.com/CWMxoW3.gif)
 
 # :cake: Requirements
 
@@ -13,10 +9,12 @@ Build a single page application which allows users to:
 - select a deck from all available decks
 - view all slides in a given deck
 - render all contents of a deck in each slide
-- visualize deck viewing statistics (not included in the demo gif)
-- it has to look decent :-) (definitely not like the demo in the gif)
+- after users see the deck show deck's stats
+- all information is available via HTTP based API
+- it has to look decent :-) we've included a slimmed down version of
+  our design [toolkit](#file-fw-challenge-ui-toolkit.png)
 
-The slide information is available via an API bundled with this challenge..
+All slide deck information is available via an API bundled with this challenge.
 
 You can get information from the API about:
 - available decks
@@ -48,12 +46,11 @@ You have to implement the solution using the following
 stack. It consists of:
 
 - Backbone
-- Mustache/Handlebars
 - RactiveJS
-- SASS
 - RequireJs
 
-You can add any extra libraries, for example for charting or build tool.
+You can add any extra libraries, for example for charting, CSS pre-processors
+or build tool of your choice.
 However full frameworks like Angular, Marionette or Ember are not allowed.
 
 ## :no_good: Do not modify index.js and slides.json!
