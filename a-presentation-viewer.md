@@ -12,7 +12,7 @@ Build a single page application which allows users to:
 - after users see the deck show deck's stats
 - all information is available via HTTP based API
 - it has to look decent :-) we've included a slimmed down version of
-  our design [toolkit](#file-fw-challenge-ui-toolkit.png)
+  our design [toolkit](#file-fw-challenge-ui-toolkit-png)
 
 All slide deck information is available via an API bundled with this challenge.
 
