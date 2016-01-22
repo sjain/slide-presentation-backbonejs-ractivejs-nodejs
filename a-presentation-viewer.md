@@ -22,6 +22,16 @@ You can get information from the API about:
 - request each slide for a deck
 - visitor statistics for each deck
 
+
+## Deadline?
+
+We understand that you're a busy person and not everyone 
+has the ability to spare 4 hours of their time.
+
+As a general practice if we don't hear from you in 5 days from 
+receiving this challenge we will assume you've withdrawn your application.
+
+
 # :computer: Setup
 
 This gist repo includes:
