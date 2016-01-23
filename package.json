@@ -4,7 +4,13 @@
   "description": "Frontend Coding Challenge for NomNom",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.13.3"
+    "backbone": "^1.2.3",
+    "express": "^4.13.3",
+    "gulp-browserify": "^0.5.1",
+    "gulp-rename": "^1.2.2",
+    "jquery": "^2.2.0",
+    "ractive": "^0.7.3",
+    "ractive-adaptors-backbone": "^0.3.0"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",
