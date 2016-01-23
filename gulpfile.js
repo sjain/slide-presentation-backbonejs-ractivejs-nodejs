@@ -3,6 +3,7 @@ var jshint = require('gulp-jshint');
 var sass   = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
+var browserSync = require('browser-sync').create();
 
 var config = function () {
   var jsDir = './src/js';
@@ -32,7 +33,7 @@ gulp.task('jshint', function() {
 gulp.task('scripts', function() {
   return gulp.src(config.jsFiles)
     .pipe(sourcemaps.init())
-    .pipe(concat('bundle.js'))
+    .pipe(concat('app.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.destDir));
 });
@@ -43,10 +44,17 @@ gulp.task('styles', function() {
     .pipe(sass())
     .pipe(concat('styles.css'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.destDir));
+    .pipe(gulp.dest(config.destDir))
+    .pipe(browserSync.stream());
 });
 
+gulp.task('scripts-watch', browserSync.reload);
 gulp.task('watch', function() {
-  gulp.watch(config.jsFiles, ['jshint', 'scripts']);
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }
+  });
+  gulp.watch(config.jsFiles, ['jshint', 'scripts', 'scripts-watch']);
   gulp.watch(config.scssFiles, ['styles']);
 });

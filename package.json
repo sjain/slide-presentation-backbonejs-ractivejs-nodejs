@@ -6,9 +6,10 @@
   "dependencies": {
     "express": "^4.13.3"
   },
-  "devDependencies": {},
-  "scripts": {
+  "devDependencies": {
+    "browser-sync": "^2.11.1"
   },
+  "scripts": {},
   "author": "NomNom Insights",
   "license": "All rights reserved, this code can't be shared with out permission from NomNom Insights"
 }
