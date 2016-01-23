@@ -39,14 +39,10 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('browserify', function() {
-  gulp.src(config.jsFiles, {read: false})
-
-    // Browserify, and add source maps if this isn't a production build
+gulp.task('browserify', function(cb) {
+  gulp.src(config.jsDir + '/main.js', {read: false})
     .pipe(browserify({
       debug: !PRODUCTION_MODE,
-      //transform: ['reactify'],
-      //extensions: ['.jsx']
       paths: ['./node_modules', config.jsDir],
       watcher: WATCH_MODE,
     }))

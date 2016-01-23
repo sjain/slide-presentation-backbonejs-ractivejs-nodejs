@@ -10,6 +10,7 @@ global.app = function() {
     name: 'User'
   });
 
+
   var ractive = new Ractive({
     el: '#main',
     template: '<h1>Hello {{user.name}}!</h1>',
