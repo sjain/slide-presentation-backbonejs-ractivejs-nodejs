@@ -6,7 +6,8 @@ var concat = require('gulp-concat');
 var browserSync = require('browser-sync').create();
 var browserify = require('gulp-browserify');
 var gutil = require('gulp-util');
-var rename = require('gulp-rename');
+var source = require('vinyl-source-stream');
+var watchify = require('watchify');
 
 global.WATCH_MODE = false;
 global.PRODUCTION_MODE = (gutil.env.type === 'production');
@@ -20,6 +21,7 @@ var config = function () {
     jsFiles: [
       jsDir + '/**/*.js',
     ],
+    appEntryFiles: [jsDir + '/main.js'],
     scssDir: scssDir,
     scssFiles: [
       scssDir + '/**/*.scss',
@@ -39,17 +41,24 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('browserify', function(cb) {
-  gulp.src(config.jsDir + '/main.js', {read: false})
-    .pipe(browserify({
-      debug: !PRODUCTION_MODE,
-      paths: ['./node_modules', config.jsDir],
-      watcher: WATCH_MODE,
-    }))
-    .pipe(rename(config.bundleJsFile))
-    .pipe(gulp.dest(config.destDir));
+// Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
+gulp.task('browserify', function() {
+  var props = {entries: config.appEntryFiles};
+  var bundler = WATCH_MODE ? watchify(props) : browserify(props);
+  //bundler.transform(reactify);
+  function rebundle() {
+    var stream = bundler.bundle({debug: true});
+    return stream.on('error', function () { gutil.log.bind(gutil, 'Browserify Error'); })
+      .pipe(source(config.bundleJsFile))
+      .pipe(gulp.dest(config.destDir));
+  }
+  bundler.on('update', function() {
+    rebundle();
+    setTimeout(browserSync.reload,1000); // HACK!! TODO revisit
+    gutil.log('Rebundle...');
+  });
+  return rebundle();
 });
-
 
 gulp.task('styles', function() {
   return gulp.src(config.scssFiles)
