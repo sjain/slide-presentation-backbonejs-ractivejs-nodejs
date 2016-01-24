@@ -51,11 +51,11 @@ gulp.task('scripts:watch', function() {
     var stream = bundler.bundle({debug: true});
     return stream.on('error', function () { gutil.log.bind(gutil, 'Browserify Error'); })
       .pipe(source(config.bundleJsFile))
-      .pipe(gulp.dest(config.destDir));
+      .pipe(gulp.dest(config.destDir))
+      .pipe(browserSync.stream({once: true}));;
   }
   bundler.on('update', function() {
     rebundle();
-    setTimeout(browserSync.reload,1000); // HACK!! TODO revisit
     gutil.log('Rebundle...');
   });
   return rebundle();
