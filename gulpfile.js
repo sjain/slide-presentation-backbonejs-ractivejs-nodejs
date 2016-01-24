@@ -8,6 +8,7 @@ var browserify = require('gulp-browserify');
 var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
 var watchify = require('watchify');
+var rename = require('gulp-rename');
 
 global.WATCH_MODE = false;
 global.PRODUCTION_MODE = (gutil.env.type === 'production');
@@ -42,9 +43,9 @@ gulp.task('jshint', function() {
 });
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
-gulp.task('browserify', function() {
+gulp.task('scripts:watch', function() {
   var props = {entries: config.appEntryFiles};
-  var bundler = WATCH_MODE ? watchify(props) : browserify(props);
+  var bundler = watchify(props);
   //bundler.transform(reactify);
   function rebundle() {
     var stream = bundler.bundle({debug: true});
@@ -60,6 +61,18 @@ gulp.task('browserify', function() {
   return rebundle();
 });
 
+gulp.task('browserify-once', function(cb) {
+  gulp.src(config.jsDir + '/main.js', {read: false})
+    .pipe(browserify({
+      debug: !PRODUCTION_MODE,
+      paths: ['./node_modules', config.jsDir],
+      watcher: WATCH_MODE,
+    }))
+    .pipe(rename(config.bundleJsFile))
+    .pipe(gulp.dest(config.destDir));
+});
+
+
 gulp.task('styles', function() {
   return gulp.src(config.scssFiles)
     .pipe(sourcemaps.init())
@@ -70,13 +83,13 @@ gulp.task('styles', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['scripts:watch'], function() {
   WATCH_MODE = true;
   browserSync.init({
     server: {
       baseDir: "./"
     }
   });
-  gulp.watch(config.jsFiles, ['jshint', 'browserify']);
+  gulp.watch(config.jsFiles, ['jshint']);
   gulp.watch(config.scssFiles, ['styles']);
 });
