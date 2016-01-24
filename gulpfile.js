@@ -93,6 +93,10 @@ gulp.task('watch', ['scripts:watch'], function() {
     server: {
       baseDir: "./"
     }
+  }, function(err, bs) {
+    if(err) {
+      gutil.log(err);
+    }
   });
   gulp.watch(config.jsFiles, ['jshint']);
   gulp.watch(config.scssFiles, ['styles']);
