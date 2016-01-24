@@ -49,10 +49,14 @@ gulp.task('scripts:watch', function() {
   //bundler.transform(reactify);
   function rebundle() {
     var stream = bundler.bundle({debug: true});
-    return stream.on('error', function () { gutil.log.bind(gutil, 'Browserify Error'); })
+    return stream.on('error', function (err) {
+      gutil.log(err.message);
+      gutil.log.bind(gutil, 'Browserify Error');
+      this.emit('end');
+    })
       .pipe(source(config.bundleJsFile))
       .pipe(gulp.dest(config.destDir))
-      .pipe(browserSync.stream({once: true}));;
+      .pipe(browserSync.stream({once: true}));
   }
   bundler.on('update', function() {
     rebundle();
