@@ -92,7 +92,7 @@ gulp.task('watch', ['scripts:watch'], function() {
   browserSync.init({
     proxy: 'http://localhost:3000',
     port: 3001,
-    browser: ["safari", "google chrome", "firefox"],
+    browser: ["google chrome"],
   }, function(err, bs) {
     if(err) {
       gutil.log(err);
