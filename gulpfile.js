@@ -90,9 +90,9 @@ gulp.task('styles', function() {
 gulp.task('watch', ['scripts:watch'], function() {
   WATCH_MODE = true;
   browserSync.init({
-    server: {
-      baseDir: "./"
-    }
+    proxy: 'http://localhost:3000',
+    port: 3001,
+    browser: ["safari", "google chrome", "firefox"],
   }, function(err, bs) {
     if(err) {
       gutil.log(err);
