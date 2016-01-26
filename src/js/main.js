@@ -1,21 +1,19 @@
 var Backbone = require('backbone');
 var Ractive = require('ractive');
 var backboneAdaptor = require('ractive-adaptors-backbone');
+var Decks = require('./models/decks');
 
 backboneAdaptor.Backbone = Backbone;
 
 global.app = function() {
 
-  var user = new Backbone.Model({
-    name: 'User'
-  });
-
+  var decks = new Decks();
 
   var ractive = new Ractive({
-    el: '#main',
-    template: '<h1>Hello {{user.name}}!</h1>',
+    el: 'body',
+    template: '<h1>There are {{decks.length}} decks!</h1>',
     data: {
-      user: user
+      decks: decks,
     },
     adapt: [ backboneAdaptor ]
   });
