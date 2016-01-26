@@ -82,6 +82,10 @@ app.get('/api/decks/:deck/slide/:slideNo', function(req, res) {
   }
 });
 
+app.get(['/','/deck*'], function(req, res) {
+  var path = require('path');
+  res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 var server = app.listen(3000, function() {
   var host = server.address().address;
