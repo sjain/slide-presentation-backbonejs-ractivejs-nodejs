@@ -1,5 +1,7 @@
 var Backbone = require('backbone');
 
-module.exports = new Backbone.Model.extend({
+module.exports = Backbone.Model.extend({
   idAttribute: 'name',
+  urlRoot: '/api/decks',
 });
+

@@ -5,6 +5,8 @@ var backboneAdaptor = require('ractive-adaptors-backbone');
 backboneAdaptor.Backbone = Backbone;
 
 var DeckListView = require('./views/deck_list');
+var DeckShowView = require('./views/deck_show');
+var Deck = require('./models/deck');
 
 var Workspace = Backbone.Router.extend({
   routes: {
@@ -26,13 +28,17 @@ var Workspace = Backbone.Router.extend({
     });
   },
 
-  deck_show: function(query, page) {
+  deck_show: function(deck_name, page) {
+    // FIXME How to move this inside DeckShow component?
+    var deck = new Deck({name: deck_name});
+    deck.fetch();
+
     var ractive = new Ractive({
       el: 'body',
-      template: 'Query: {{query}} <br/>Page: {{page}}',
+      template: '<DeckShow deck="{{deck}}"/>',
+      components: { DeckShow: DeckShowView },
       data: {
-        query: query,
-        page: page
+        deck: deck,
       },
       adapt: [ backboneAdaptor ]
     });
