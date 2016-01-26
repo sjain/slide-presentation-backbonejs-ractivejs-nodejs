@@ -4,7 +4,6 @@ var Backbone = require('backbone');
 var backboneAdaptor = require('ractive-adaptors-backbone');
 backboneAdaptor.Backbone = Backbone;
 
-var Decks = require('./models/decks');
 var DeckListView = require('./views/deck_list');
 
 var Workspace = Backbone.Router.extend({
@@ -19,16 +18,11 @@ var Workspace = Backbone.Router.extend({
   },
 
   deck_list: function() {
-    var decks = new Decks();
 
     var ractive = new Ractive({
       el: 'body',
-      template: '<DeckList decks="{{decks}}"/>',
-      data: {
-        decks: decks
-      },
+      template: '<DeckList/>',
       components: { DeckList: DeckListView },
-      adapt: [ backboneAdaptor ]
     });
   },
 
