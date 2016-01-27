@@ -9,7 +9,7 @@ var Decks = require('../models/decks');
 var componentTemplate = '<title/><list/>';
 var titleTemplate = '<h1>There are {{decks.length}} decks!</h1>';
 var listTemplate = "<ul>{{#each decks}}<list-item />{{/each}}</ul>";
-var listItemTemplate = "<li><a href='/decks/{{name}}'>{{name}}</a></li>";
+var listItemTemplate = "<li><a href='/decks/{{name}}/slides/1'>{{name}}</a></li>";
 
 var decks = new Decks();
 
