@@ -27,18 +27,6 @@ var DeckList = Ractive.extend({
     'list-item': Ractive.extend({template: listItemTemplate})
   },
   adapt: [ backboneAdaptor ],
-  oncomplete: function() {
-    $(document).on("click", "a:not([data-bypass])", function(evt) {
-      var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
-      console.log('href:', href);
-      var root = location.protocol + "//" + location.host + Backbone.history.options.root;
-
-      if (href.prop && href.prop.slice(0, root.length) === root) {
-        evt.preventDefault();
-        Backbone.history.navigate(href.attr, true);
-      }
-    });
-  }
 });
 
 module.exports = DeckList;
