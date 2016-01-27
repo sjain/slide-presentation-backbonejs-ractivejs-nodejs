@@ -5,12 +5,12 @@ backboneAdaptor.Backbone = Backbone;
 
 
 // FIXME These template snippets are not scalable. Figure out external HTML template files..
-var componentTemplate = '<title/><heading/><paragraph/><image/><footer/>';
+var componentTemplate = '<title/><heading/><paragraph/><image/><navigationBar/>';
 var titleTemplate = '<h1>{{slide.deck}}</h1>';
 var headingTemplate = '<h4>{{slide.slide[0].heading}}</h4>';
 var paragraphTemplate = '<p>{{slide.slide[0].para}}</p>';
 var imageTemplate = '<img src="{{slide.slide[0].image}}"/>';
-var footerTemplate = '<ul class="footer"><previousLink/><currentSlideInfo/><nextLink/></ul>';
+var navigationBar = '<ul class="nav-bar"><previousLink/><currentSlideInfo/><nextLink/></ul>';
 var previousLink = '{{#if parseInt(slide.id) != 1}}<previousSlideLink/>{{/if}}{{#if parseInt(slide.id) == 1}}<returnToDeckListLink/>{{/if}}';
 var returnToDeckListLink = '<li><a href="/decks">All Decks</a></li>';
 var previousSlideLink = '<li><a href="/decks/{{slide.deck}}/slides/{{ parseInt(slide.id)-1}}">&lt;&lt;</a></li>';
@@ -32,7 +32,7 @@ var SlideShow = Ractive.extend({
     heading: Ractive.extend({template: headingTemplate}),
     paragraph: Ractive.extend({template: paragraphTemplate}),
     image: Ractive.extend({template: imageTemplate}),
-    footer: Ractive.extend({template: footerTemplate}),
+    navigationBar: Ractive.extend({template: navigationBar}),
     previousLink: Ractive.extend({template: previousLink}),
     previousSlideLink: Ractive.extend({template: previousSlideLink}),
     returnToDeckListLink: Ractive.extend({template: returnToDeckListLink}),
