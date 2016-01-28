@@ -9,13 +9,16 @@ var DeckShowView = require('./views/deck_show');
 var Deck = require('./models/deck');
 var SlideShowView = require('./views/slide_show');
 var Slide = require('./models/slide');
+var StatsShowView = require('./views/stats_show');
+var VisitorStats = require('./models/visitor_stats');
 
 var Workspace = Backbone.Router.extend({
   routes: {
     "":                            "home",
     "decks":                       "deck_list",
     "decks/:name":                 "deck_show",
-    "decks/:deck/slides/:slideNo":  "slide_show",
+    "decks/:deck/slides/:slideNo": "slide_show",
+    "decks/:deck/stats":           "stats_show",
   },
 
   home: function() {
@@ -61,7 +64,25 @@ var Workspace = Backbone.Router.extend({
       },
       adapt: [ backboneAdaptor ]
     });
-  }
+  },
+
+  stats_show: function(deck_name) {
+    var visitorStats = new VisitorStats({deck: deck_name});
+    visitorStats.deck = deck_name;
+    console.log('visitorStats.deck:', visitorStats.deck);
+    console.log('visitorStats.url():', visitorStats.url());
+    visitorStats.fetch();
+
+    var ractive = new Ractive({
+      el: 'body',
+      template: '<StatsShowView visitorStats="{{visitorStats}}"/>',
+      components: { StatsShowView: StatsShowView },
+      data: {
+        visitorStats: visitorStats,
+      },
+      adapt: [ backboneAdaptor ]
+    });
+  },
 });
 
 //module.exports = Workspace;
