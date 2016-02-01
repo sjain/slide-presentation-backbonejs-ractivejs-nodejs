@@ -80,7 +80,7 @@ gulp.task('browserify-once', function(cb) {
 gulp.task('styles', function() {
   return gulp.src(config.scssFiles)
     .pipe(sourcemaps.init())
-    .pipe(sass())
+    .pipe(sass().on('error', sass.logError))
     .pipe(concat('styles.css'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.destDir))
