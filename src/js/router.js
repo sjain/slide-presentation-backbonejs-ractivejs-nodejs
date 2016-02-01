@@ -11,6 +11,7 @@ var SlideShowView = require('./views/slide_show');
 var Slide = require('./models/slide');
 var StatsShowView = require('./views/stats_show');
 var VisitorStats = require('./models/visitor_stats');
+var CountryStats = require('./models/country_stats');
 
 var Workspace = Backbone.Router.extend({
   routes: {
@@ -69,13 +70,16 @@ var Workspace = Backbone.Router.extend({
   stats_show: function(deck_name) {
     var visitorStats = new VisitorStats({deck: deck_name});
     visitorStats.deck = deck_name;
+    var countryStats = new CountryStats({deck: deck_name});
+    countryStats.deck = deck_name;
 
     var ractive = new Ractive({
       el: 'body',
-      template: '<StatsShowView visitorStats="{{visitorStats}}"/>',
+      template: '<StatsShowView visitorStats="{{visitorStats}}" countryStats="{{countryStats}}"/>',
       components: { StatsShowView: StatsShowView },
       data: {
         visitorStats: visitorStats,
+        countryStats: countryStats,
       },
       adapt: [ backboneAdaptor ]
     });
