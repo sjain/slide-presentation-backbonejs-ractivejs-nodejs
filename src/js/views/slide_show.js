@@ -5,7 +5,8 @@ backboneAdaptor.Backbone = Backbone;
 
 
 // FIXME These template snippets are not scalable. Figure out external HTML template files..
-var componentTemplate = '<title/><heading/><paragraph/><image/><navigationBar/>';
+var componentTemplate = '<div class="page-slide-show"><title/><slide/><navigationBar/></div>';
+var slideTemplate = '<div class="slide"><heading/><image/><paragraph/></div>';
 var titleTemplate = '<h1>{{slide.deck}}</h1>';
 var headingTemplate = '<h4>{{slide.slide[0].heading}}</h4>';
 var paragraphTemplate = '<p>{{slide.slide[0].para}}</p>';
@@ -30,6 +31,7 @@ var SlideShow = Ractive.extend({
   components: {
     title: Ractive.extend({template: titleTemplate}),
     heading: Ractive.extend({template: headingTemplate}),
+    slide: Ractive.extend({template: slideTemplate}),
     paragraph: Ractive.extend({template: paragraphTemplate}),
     image: Ractive.extend({template: imageTemplate}),
     navigationBar: Ractive.extend({template: navigationBar}),
