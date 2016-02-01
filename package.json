@@ -6,6 +6,7 @@
   "dependencies": {
     "backbone": "^1.2.3",
     "express": "^4.13.3",
+    "highcharts": "^4.2.1",
     "jquery": "^2.2.0",
     "ractive": "^0.7.3",
     "ractive-adaptors-backbone": "^0.3.0"

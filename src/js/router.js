@@ -69,9 +69,6 @@ var Workspace = Backbone.Router.extend({
   stats_show: function(deck_name) {
     var visitorStats = new VisitorStats({deck: deck_name});
     visitorStats.deck = deck_name;
-    console.log('visitorStats.deck:', visitorStats.deck);
-    console.log('visitorStats.url():', visitorStats.url());
-    visitorStats.fetch();
 
     var ractive = new Ractive({
       el: 'body',
@@ -82,6 +79,7 @@ var Workspace = Backbone.Router.extend({
       },
       adapt: [ backboneAdaptor ]
     });
+
   },
 });
 
