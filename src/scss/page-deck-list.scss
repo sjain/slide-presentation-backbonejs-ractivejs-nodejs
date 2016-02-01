@@ -1,0 +1,16 @@
+@import 'variables';
+
+.page-deck-list {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid $border-color;
+    li {
+      padding: 10px;
+      border: 1px solid $border-color;
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+}
