@@ -87,7 +87,7 @@ gulp.task('styles', function() {
     .pipe(browserSync.stream());
 });
 
-gulp.task('watch', ['scripts:watch'], function() {
+gulp.task('watch', ['styles', 'scripts:watch'], function() {
   WATCH_MODE = true;
   browserSync.init({
     proxy: 'http://localhost:3000',
